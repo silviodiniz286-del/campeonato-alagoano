@@ -3,170 +3,123 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Campeonato Alagoano</title>
 
-    <link
-        rel="stylesheet"
-        href="{% static 'style.css' %}"
-    >
+    <link rel="stylesheet" href="{% static 'style.css' %}">
 </head>
 <body>
 
 <header class="dashboard-header">
-    <h1>🏆 Campeonato Alagoano</h1>
+    <div class="header-conteudo">
+        <span class="tag-campeonato">AO VIVO • FUTEBOL ALAGOANO</span>
 
-    <p>
-        1ª Divisão •
-        2ª Divisão •
-        Mata-mata •
-        Notícias •
-        Simulador
-    </p>
+        <h1>🏆 Campeonato Alagoano</h1>
+
+        <p>
+            Notícias, rodadas, classificação, mata-mata e simulador minuto a minuto.
+        </p>
+
+        <div class="header-botoes">
+            <a href="/rodadas/">Ver Rodadas</a>
+            <a href="/classificacao/">Classificação</a>
+        </div>
+    </div>
 </header>
 
-<div class="menu">
-    <a href="/">🏠 Dashboard</a>
+<nav class="menu">
+    <a href="/">🏠 Início</a>
     <a href="/rodadas/">🥇 1ª Divisão</a>
     <a href="/segunda-divisao/">🥈 2ª Divisão</a>
     <a href="/classificacao/">📊 Classificação</a>
     <a href="/matamata/">🏆 Mata-mata</a>
     <a href="/noticias/">📰 Notícias</a>
     <a href="/admin/">⚙ Admin</a>
-</div>
+</nav>
 
-<div class="dashboard-container">
+<main class="dashboard-container">
 
-<!-- RESUMO -->
+    <section class="painel-resumo">
+        <div class="resumo-box">
+            <span>⚽ Times</span>
+            <strong>{{ total_times }}</strong>
+        </div>
 
-<div class="dashboard-card destaque">
+        <div class="resumo-box">
+            <span>📅 Jogos</span>
+            <strong>{{ total_jogos }}</strong>
+        </div>
 
-<h2>⚽ Resumo Geral</h2>
+        <div class="resumo-box">
+            <span>✅ Finalizados</span>
+            <strong>{{ jogos_finalizados }}</strong>
+        </div>
+    </section>
 
-<p>
-<strong>Times:</strong>
-{{ total_times }}
-</p>
+    <section class="manchete-card">
+        <div>
+            <span class="categoria">DESTAQUE</span>
+            <h2>O futebol alagoano está em campo</h2>
+            <p>
+                Acompanhe todos os jogos, classificação, mata-mata,
+                notícias automáticas e simulações ao vivo do campeonato.
+            </p>
+        </div>
 
-<p>
-<strong>Jogos:</strong>
-{{ total_jogos }}
-</p>
+        <a href="/noticias/">Ver notícias 📰</a>
+    </section>
 
-<p>
-<strong>Finalizados:</strong>
-{{ jogos_finalizados }}
-</p>
+    <section class="grid-dashboard">
 
-</div>
+        <a class="dashboard-card" href="/rodadas/">
+            <span class="icone-card">🥇</span>
+            <h2>1ª Divisão</h2>
+            <p>Rodadas, jogos, resultados e simulador ao vivo.</p>
+        </a>
 
-<!-- 1 DIVISAO -->
+        <a class="dashboard-card" href="/segunda-divisao/">
+            <span class="icone-card">🥈</span>
+            <h2>2ª Divisão</h2>
+            <p>Disputa pelo acesso, ida e volta e campeão.</p>
+        </a>
 
-<a
-class="dashboard-card"
-href="/rodadas/"
->
-    <h2>🥇 1ª Divisão</h2>
+        <a class="dashboard-card" href="/classificacao/">
+            <span class="icone-card">📊</span>
+            <h2>Classificação</h2>
+            <p>Grupos, pontuação, saldo de gols e rebaixados.</p>
+        </a>
 
-    <p>
-        Rodadas,
-        classificação
-        e simulador
-    </p>
-</a>
+        <a class="dashboard-card" href="/matamata/">
+            <span class="icone-card">🏆</span>
+            <h2>Mata-mata</h2>
+            <p>Quartas, semifinal, final e campeão do torneio.</p>
+        </a>
 
-<!-- 2 DIVISAO -->
+        <a class="dashboard-card" href="/noticias/">
+            <span class="icone-card">📰</span>
+            <h2>Notícias</h2>
+            <p>Resumo automático dos jogos e manchetes do campeonato.</p>
+        </a>
 
-<a
-class="dashboard-card"
-href="/segunda-divisao/"
->
-    <h2>🥈 2ª Divisão</h2>
+        <a class="dashboard-card" href="/gerar-jogadores/">
+            <span class="icone-card">👥</span>
+            <h2>Gerar Jogadores</h2>
+            <p>Crie automaticamente até 30 jogadores por time.</p>
+        </a>
 
-    <p>
-        Jogos ida e volta,
-        acesso e campeão
-    </p>
-</a>
+        <a class="dashboard-card admin-card" href="/admin/">
+            <span class="icone-card">⚙</span>
+            <h2>Admin</h2>
+            <p>Editar times, jogos, placares e informações do campeonato.</p>
+        </a>
 
-<!-- CLASSIFICACAO -->
+    </section>
 
-<a
-class="dashboard-card"
-href="/classificacao/"
->
-    <h2>📊 Classificação</h2>
+</main>
 
-    <p>
-        Veja grupos,
-        geral e rebaixados
-    </p>
-</a>
-
-<!-- MATA-MATA -->
-
-<a
-class="dashboard-card"
-href="/matamata/"
->
-    <h2>🏆 Mata-mata</h2>
-
-    <p>
-        Quartas,
-        semifinal
-        e final
-    </p>
-</a>
-
-<!-- NOTICIAS -->
-
-<a
-class="dashboard-card"
-href="/noticias/"
->
-    <h2>📰 Notícias</h2>
-
-    <p>
-        Notícias automáticas
-        dos jogos
-    </p>
-</a>
-
-<!-- GERAR JOGADORES -->
-
-<a
-class="dashboard-card"
-href="/gerar-jogadores/"
->
-    <h2>👥 Gerar Jogadores</h2>
-
-    <p>
-        Criar automaticamente
-        até 30 jogadores
-        por time
-    </p>
-</a>
-
-<!-- ADMIN -->
-
-<a
-class="dashboard-card"
-href="/admin/"
->
-    <h2>⚙ Admin</h2>
-
-    <p>
-        Editar times,
-        jogos e campeonato
-    </p>
-</a>
-
-</div>
+<footer class="footer-campeonato">
+    <p>🏟 Campeonato Alagoano • Sistema criado por Silvio</p>
+</footer>
 
 </body>
 </html>
