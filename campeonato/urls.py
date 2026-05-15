@@ -1,14 +1,11 @@
-from django.contrib import admin
-from django.urls import path, include
-from django.conf import settings
-from django.conf.urls.static import static
+from django.urls import path
+from . import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include('campeonato.urls')),
+    path('', views.home, name='home'),
+    path('rodadas/', views.rodadas, name='rodadas'),
+    path('segunda-divisao/', views.segunda_divisao, name='segunda_divisao'),
+    path('classificacao/', views.classificacao, name='classificacao'),
+    path('matamata/', views.matamata, name='matamata'),
+    path('noticias/', views.noticias, name='noticias'),
 ]
-
-urlpatterns += static(
-    settings.MEDIA_URL,
-    document_root=settings.MEDIA_ROOT
-)
