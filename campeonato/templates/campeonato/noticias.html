@@ -1,0 +1,34 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'campeonato/style.css' %}">
+
+<header>
+    <h1>📰 Notícias do Campeonato</h1>
+    <p>Notícias geradas automaticamente pelos resultados</p>
+</header>
+
+<div class="menu">
+    <a href="/">🏠 Dashboard</a>
+    <a href="/rodadas/">🥇 1ª Divisão</a>
+    <a href="/segunda-divisao/">🥈 2ª Divisão</a>
+    <a href="/classificacao/">📊 Classificação</a>
+    <a href="/matamata/">🏆 Mata-mata</a>
+    <a href="/noticias/">📰 Notícias</a>
+    <a href="/admin/">⚙ Admin</a>
+</div>
+
+<div class="container">
+
+    {% for noticia in noticias %}
+    <div class="card noticia-card">
+        <h2>{{ noticia.titulo }}</h2>
+        <p>{{ noticia.texto }}</p>
+        <small>Rodada {{ noticia.rodada }}</small>
+    </div>
+    {% empty %}
+    <div class="card">
+        <h2>Nenhuma notícia ainda</h2>
+        <p>Adicione placares nas rodadas para gerar notícias automáticas.</p>
+    </div>
+    {% endfor %}
+
+</div>

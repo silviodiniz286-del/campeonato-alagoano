@@ -1,0 +1,159 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'campeonato/style.css' %}">
+
+<header>
+    <h1>🏆 Classificação</h1>
+    <p>Campeonato Alagoano</p>
+</header>
+
+<div class="menu">
+    <a href="/">🏠 Dashboard</a>
+    <a href="/rodadas/">🥇 1ª Divisão</a>
+    <a href="/segunda-divisao/">🥈 2ª Divisão</a>
+    <a href="/classificacao/">📊 Classificação</a>
+    <a href="/matamata/">🏆 Mata-mata</a>
+    <a href="/noticias/">📰 Notícias</a>
+    <a href="/admin/">⚙ Admin</a>
+</div>
+
+<div class="container">
+
+<h2 class="grupo-title">
+    Classificação dos Grupos
+</h2>
+
+{% for nome_grupo, tabela in grupos.items %}
+
+<div class="card">
+
+<h2>
+    Grupo {{ nome_grupo }}
+</h2>
+
+<table class="tabela-campeonato">
+
+<tr>
+    <th>#</th>
+    <th>Time</th>
+    <th>Pts</th>
+    <th>J</th>
+    <th>V</th>
+    <th>E</th>
+    <th>D</th>
+    <th>GP</th>
+    <th>GC</th>
+    <th>SG</th>
+</tr>
+
+{% for item in tabela %}
+
+<tr class="
+{% if forloop.counter <= 2 %}
+classificado
+{% endif %}
+">
+
+<td class="posicao">
+    {{ forloop.counter }}
+</td>
+
+<td>
+    <div class="time-coluna">
+
+        {% if item.time.logo %}
+        <img
+            src="{{ item.time.logo.url }}"
+            class="logo-time"
+        >
+        {% endif %}
+
+        {{ item.time.nome }}
+
+    </div>
+</td>
+
+<td>{{ item.pontos }}</td>
+<td>{{ item.jogos }}</td>
+<td>{{ item.vitorias }}</td>
+<td>{{ item.empates }}</td>
+<td>{{ item.derrotas }}</td>
+<td>{{ item.gols_pro }}</td>
+<td>{{ item.gols_contra }}</td>
+<td>{{ item.saldo }}</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+</div>
+
+{% endfor %}
+
+<div class="card">
+
+<h2 class="grupo-title">
+    Classificação Geral
+</h2>
+
+<table class="tabela-campeonato">
+
+<tr>
+    <th>#</th>
+    <th>Time</th>
+    <th>Pts</th>
+    <th>J</th>
+    <th>V</th>
+    <th>E</th>
+    <th>D</th>
+    <th>GP</th>
+    <th>GC</th>
+    <th>SG</th>
+</tr>
+
+{% for item in geral %}
+
+<tr class="
+{% if forloop.counter > geral|length|add:'-2' %}
+rebaixado-row
+{% endif %}
+">
+
+<td class="posicao">
+    {{ forloop.counter }}
+</td>
+
+<td>
+    <div class="time-coluna">
+
+        {% if item.time.logo %}
+        <img
+            src="{{ item.time.logo.url }}"
+            class="logo-time"
+        >
+        {% endif %}
+
+        {{ item.time.nome }}
+
+    </div>
+</td>
+
+<td>{{ item.pontos }}</td>
+<td>{{ item.jogos }}</td>
+<td>{{ item.vitorias }}</td>
+<td>{{ item.empates }}</td>
+<td>{{ item.derrotas }}</td>
+<td>{{ item.gols_pro }}</td>
+<td>{{ item.gols_contra }}</td>
+<td>{{ item.saldo }}</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+</div>
+
+</div>

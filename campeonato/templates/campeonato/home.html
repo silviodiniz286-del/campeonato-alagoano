@@ -1,0 +1,172 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Campeonato Alagoano</title>
+
+    <link
+        rel="stylesheet"
+        href="{% static 'campeonato/style.css' %}"
+    >
+</head>
+<body>
+
+<header class="dashboard-header">
+    <h1>🏆 Campeonato Alagoano</h1>
+
+    <p>
+        1ª Divisão •
+        2ª Divisão •
+        Mata-mata •
+        Notícias •
+        Simulador
+    </p>
+</header>
+
+<div class="menu">
+    <a href="/">🏠 Dashboard</a>
+    <a href="/rodadas/">🥇 1ª Divisão</a>
+    <a href="/segunda-divisao/">🥈 2ª Divisão</a>
+    <a href="/classificacao/">📊 Classificação</a>
+    <a href="/matamata/">🏆 Mata-mata</a>
+    <a href="/noticias/">📰 Notícias</a>
+    <a href="/admin/">⚙ Admin</a>
+</div>
+
+<div class="dashboard-container">
+
+<!-- RESUMO -->
+
+<div class="dashboard-card destaque">
+
+<h2>⚽ Resumo Geral</h2>
+
+<p>
+<strong>Times:</strong>
+{{ total_times }}
+</p>
+
+<p>
+<strong>Jogos:</strong>
+{{ total_jogos }}
+</p>
+
+<p>
+<strong>Finalizados:</strong>
+{{ jogos_finalizados }}
+</p>
+
+</div>
+
+<!-- 1 DIVISAO -->
+
+<a
+class="dashboard-card"
+href="/rodadas/"
+>
+    <h2>🥇 1ª Divisão</h2>
+
+    <p>
+        Rodadas,
+        classificação
+        e simulador
+    </p>
+</a>
+
+<!-- 2 DIVISAO -->
+
+<a
+class="dashboard-card"
+href="/segunda-divisao/"
+>
+    <h2>🥈 2ª Divisão</h2>
+
+    <p>
+        Jogos ida e volta,
+        acesso e campeão
+    </p>
+</a>
+
+<!-- CLASSIFICACAO -->
+
+<a
+class="dashboard-card"
+href="/classificacao/"
+>
+    <h2>📊 Classificação</h2>
+
+    <p>
+        Veja grupos,
+        geral e rebaixados
+    </p>
+</a>
+
+<!-- MATA-MATA -->
+
+<a
+class="dashboard-card"
+href="/matamata/"
+>
+    <h2>🏆 Mata-mata</h2>
+
+    <p>
+        Quartas,
+        semifinal
+        e final
+    </p>
+</a>
+
+<!-- NOTICIAS -->
+
+<a
+class="dashboard-card"
+href="/noticias/"
+>
+    <h2>📰 Notícias</h2>
+
+    <p>
+        Notícias automáticas
+        dos jogos
+    </p>
+</a>
+
+<!-- GERAR JOGADORES -->
+
+<a
+class="dashboard-card"
+href="/gerar-jogadores/"
+>
+    <h2>👥 Gerar Jogadores</h2>
+
+    <p>
+        Criar automaticamente
+        até 30 jogadores
+        por time
+    </p>
+</a>
+
+<!-- ADMIN -->
+
+<a
+class="dashboard-card"
+href="/admin/"
+>
+    <h2>⚙ Admin</h2>
+
+    <p>
+        Editar times,
+        jogos e campeonato
+    </p>
+</a>
+
+</div>
+
+</body>
+</html>

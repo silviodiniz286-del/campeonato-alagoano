@@ -1,0 +1,171 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>2ª Divisão</title>
+
+    <link
+        rel="stylesheet"
+        href="{% static 'campeonato/style.css' %}"
+    >
+</head>
+<body>
+
+<header>
+    <h1>🥈 Alagoano 2ª Divisão</h1>
+    <p>Ida e volta • 1º e 2º sobem</p>
+</header>
+
+<div class="menu">
+    <a href="/">🏠 Dashboard</a>
+    <a href="/rodadas/">🥇 1ª Divisão</a>
+    <a href="/segunda-divisao/">🥈 2ª Divisão</a>
+    <a href="/classificacao/">📊 Classificação</a>
+    <a href="/matamata/">🏆 Mata-mata</a>
+    <a href="/noticias/">📰 Notícias</a>
+    <a href="/admin/">⚙ Admin</a>
+</div>
+
+<div class="container">
+
+<!-- GERAR CONFRONTOS -->
+
+<div class="card">
+    <h2 class="grupo-title">🎲 Gerar Campeonato</h2>
+
+    <a
+        href="/gerar-confrontos-segunda/"
+        class="botao-salvar"
+    >
+        🎲 Gerar confrontos aleatórios da 2ª divisão
+    </a>
+</div>
+
+<!-- RODADAS -->
+
+<div class="card">
+    <h2 class="grupo-title">📅 Rodadas</h2>
+
+    <div class="rodadas-botoes">
+        {% for rodada in rodadas_lista %}
+        <a
+            class="botao-rodada {% if rodada == rodada_atual %}ativa{% endif %}"
+            href="/segunda-divisao/{{ rodada }}/"
+        >
+            Rodada {{ rodada }}
+        </a>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- CLASSIFICAÇÃO -->
+
+<div class="card">
+    <h2 class="grupo-title">📊 Classificação Geral</h2>
+
+    <table class="tabela-campeonato segunda-tabela">
+        <tr>
+            <th>#</th>
+            <th>Time</th>
+            <th>Pts</th>
+            <th>J</th>
+            <th>V</th>
+            <th>E</th>
+            <th>D</th>
+            <th>GP</th>
+            <th>GC</th>
+            <th>SG</th>
+        </tr>
+
+        {% for item in tabela %}
+        <tr class="{% if forloop.counter <= 2 %}classificado{% endif %}">
+            <td>{{ forloop.counter }}</td>
+
+            <td class="segunda-time">
+                <div class="time-coluna">
+                    {% if item.time.logo %}
+                    <img
+                        src="{{ item.time.logo.url }}"
+                        class="logo-time"
+                    >
+                    {% endif %}
+
+                    {{ item.time.nome }}
+                </div>
+            </td>
+
+            <td>{{ item.pontos }}</td>
+            <td>{{ item.jogos }}</td>
+            <td>{{ item.vitorias }}</td>
+            <td>{{ item.empates }}</td>
+            <td>{{ item.derrotas }}</td>
+            <td>{{ item.gols_pro }}</td>
+            <td>{{ item.gols_contra }}</td>
+            <td>{{ item.saldo }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+<!-- JOGOS DA RODADA -->
+
+<div class="card">
+    <h2 class="grupo-title">⚽ Rodada {{ rodada_atual }}</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        {% for jogo in jogos %}
+        <div class="jogo-copa">
+            <div class="time-casa">
+                {{ jogo.mandante.nome }}
+            </div>
+
+            <div class="placar-copa2014">
+                <input
+                    class="input-gol"
+                    type="number"
+                    min="0"
+                    name="gols_mandante_{{ jogo.id }}"
+                    value="{{ jogo.gols_mandante|default_if_none:'' }}"
+                >
+
+                <div class="x-copa">X</div>
+
+                <input
+                    class="input-gol"
+                    type="number"
+                    min="0"
+                    name="gols_visitante_{{ jogo.id }}"
+                    value="{{ jogo.gols_visitante|default_if_none:'' }}"
+                >
+            </div>
+
+            <div class="time-fora">
+                {{ jogo.visitante.nome }}
+            </div>
+        </div>
+
+        {% empty %}
+        <p>Nenhum jogo nesta rodada.</p>
+        {% endfor %}
+
+        <button
+            class="botao-salvar"
+            type="submit"
+        >
+            💾 Salvar rodada
+        </button>
+    </form>
+</div>
+
+</div>
+
+</body>
+</html>

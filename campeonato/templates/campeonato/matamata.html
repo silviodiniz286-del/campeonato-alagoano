@@ -1,0 +1,111 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'campeonato/style.css' %}">
+
+<header>
+    <h1>🏆 Mata-mata</h1>
+    <p>Quartas, semifinal e final ida e volta</p>
+</header>
+
+<div class="menu">
+    <a href="/">🏠 Dashboard</a>
+    <a href="/rodadas/">🥇 1ª Divisão</a>
+    <a href="/segunda-divisao/">🥈 2ª Divisão</a>
+    <a href="/classificacao/">📊 Classificação</a>
+    <a href="/matamata/">🏆 Mata-mata</a>
+    <a href="/noticias/">📰 Notícias</a>
+    <a href="/admin/">⚙ Admin</a>
+</div>
+
+<div class="container">
+
+<form method="POST">
+    {% csrf_token %}
+    <button class="botao-salvar" type="submit" name="acao" value="atualizar_mata_mata">
+    🔄 Atualizar mata-mata pela classificação
+</button>
+
+    <div class="card">
+        <h2>🏆 Quartas de Final</h2>
+
+        {% for jogo in quartas %}
+        <div class="jogo-copa">
+            <div class="time-casa">{{ jogo.mandante }}</div>
+
+            <div class="placar-copa2014">
+                <input class="input-gol" type="number" min="0"
+                       name="gols_mandante_{{ jogo.id }}"
+                       value="{{ jogo.gols_mandante|default_if_none:'' }}">
+
+                <div class="x-copa">X</div>
+
+                <input class="input-gol" type="number" min="0"
+                       name="gols_visitante_{{ jogo.id }}"
+                       value="{{ jogo.gols_visitante|default_if_none:'' }}">
+            </div>
+
+            <div class="time-fora">{{ jogo.visitante }}</div>
+        </div>
+        {% empty %}
+            <p>Nenhum jogo das quartas criado ainda.</p>
+        {% endfor %}
+    </div>
+
+    <div class="card">
+        <h2>🔥 Semifinal</h2>
+
+        {% for jogo in semifinais %}
+        <div class="jogo-copa">
+            <div class="time-casa">{{ jogo.mandante }}</div>
+
+            <div class="placar-copa2014">
+                <input class="input-gol" type="number" min="0"
+                       name="gols_mandante_{{ jogo.id }}"
+                       value="{{ jogo.gols_mandante|default_if_none:'' }}">
+
+                <div class="x-copa">X</div>
+
+                <input class="input-gol" type="number" min="0"
+                       name="gols_visitante_{{ jogo.id }}"
+                       value="{{ jogo.gols_visitante|default_if_none:'' }}">
+            </div>
+
+            <div class="time-fora">{{ jogo.visitante }}</div>
+        </div>
+        {% empty %}
+            <p>As semifinais aparecem depois que você salvar os vencedores das quartas.</p>
+        {% endfor %}
+    </div>
+
+    <div class="card">
+        <h2>👑 Final - Ida e Volta</h2>
+
+        {% for jogo in final %}
+        <div class="jogo-copa">
+            <div class="time-casa">{{ jogo.mandante }}</div>
+
+            <div class="placar-copa2014">
+                <input class="input-gol" type="number" min="0"
+                       name="gols_mandante_{{ jogo.id }}"
+                       value="{{ jogo.gols_mandante|default_if_none:'' }}">
+
+                <div class="x-copa">X</div>
+
+                <input class="input-gol" type="number" min="0"
+                       name="gols_visitante_{{ jogo.id }}"
+                       value="{{ jogo.gols_visitante|default_if_none:'' }}">
+            </div>
+
+            <div class="time-fora">{{ jogo.visitante }}</div>
+        </div>
+        {% empty %}
+            <p>A final aparece depois que você salvar os vencedores das semifinais.</p>
+        {% endfor %}
+    </div>
+
+    <button class="botao-salvar" type="submit">
+        💾 Salvar mata-mata
+    </button>
+
+</form>
+
+</div>

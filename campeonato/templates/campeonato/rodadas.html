@@ -1,0 +1,159 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Rodadas</title>
+
+    <link
+        rel="stylesheet"
+        href="{% static 'campeonato/style.css' %}"
+    >
+</head>
+
+<body>
+
+<header>
+    <h1>🥇 1ª Divisão</h1>
+    <p>Rodadas do campeonato</p>
+</header>
+
+<div class="menu">
+    <a href="/">🏠 Dashboard</a>
+    <a href="/rodadas/">🥇 1ª Divisão</a>
+    <a href="/segunda-divisao/">🥈 2ª Divisão</a>
+    <a href="/classificacao/">📊 Classificação</a>
+    <a href="/matamata/">🏆 Mata-mata</a>
+    <a href="/noticias/">📰 Notícias</a>
+    <a href="/admin/">⚙ Admin</a>
+</div>
+
+<div class="container">
+
+<div class="card">
+
+<h2 class="grupo-title">
+🎲 Gerar Campeonato
+</h2>
+
+<a
+href="/gerar-confrontos/"
+class="botao-salvar"
+>
+🎲 Gerar confrontos aleatórios
+</a>
+
+</div>
+
+<div class="card">
+
+<h2 class="grupo-title">
+📅 Rodadas
+</h2>
+
+<div class="rodadas-botoes">
+
+{% for rodada in rodadas_lista %}
+
+<a
+class="
+botao-rodada
+{% if rodada == rodada_atual %}
+ativa
+{% endif %}
+"
+href="/rodadas/{{ rodada }}/"
+>
+Rodada {{ rodada }}
+</a>
+
+{% endfor %}
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2 class="grupo-title">
+⚽ Rodada {{ rodada_atual }}
+</h2>
+
+<form method="POST">
+
+{% csrf_token %}
+
+{% for jogo in jogos %}
+
+<div class="jogo-copa">
+
+    <div class="time-casa">
+        {{ jogo.mandante.nome }}
+    </div>
+
+    <div class="placar-copa2014">
+
+        <input
+        class="input-gol"
+        type="number"
+        min="0"
+        name="gols_mandante_{{ jogo.id }}"
+        value="{{ jogo.gols_mandante|default_if_none:'' }}"
+        >
+
+        <div class="x-copa">
+            X
+        </div>
+
+        <input
+        class="input-gol"
+        type="number"
+        min="0"
+        name="gols_visitante_{{ jogo.id }}"
+        value="{{ jogo.gols_visitante|default_if_none:'' }}"
+        >
+
+    </div>
+
+    <div class="time-fora">
+        {{ jogo.visitante.nome }}
+    </div>
+
+    <a
+    href="/jogo/{{ jogo.id }}/"
+    class="botao-simular"
+    >
+    🎮 Simular jogo
+    </a>
+
+</div>
+
+{% empty %}
+
+<p>
+Nenhum confronto nesta rodada.
+</p>
+
+{% endfor %}
+
+<button
+class="botao-salvar"
+type="submit"
+>
+💾 Salvar rodada
+</button>
+
+</form>
+
+</div>
+
+</div>
+
+</body>
+</html>

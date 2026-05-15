@@ -1,0 +1,273 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Partida Ao Vivo</title>
+
+    <link
+        rel="stylesheet"
+        href="{% static 'campeonato/style.css' %}"
+    >
+</head>
+<body>
+
+<header>
+    <h1>🔴 Partida Ao Vivo</h1>
+    <p>{{ jogo.mandante.nome }} x {{ jogo.visitante.nome }}</p>
+</header>
+
+<div class="menu">
+    <a href="/">🏠 Dashboard</a>
+    <a href="/rodadas/">🥇 1ª Divisão</a>
+    <a href="/segunda-divisao/">🥈 2ª Divisão</a>
+    <a href="/classificacao/">📊 Classificação</a>
+    <a href="/matamata/">🏆 Mata-mata</a>
+    <a href="/noticias/">📰 Notícias</a>
+</div>
+
+<div class="container">
+
+<!-- PLACAR -->
+
+<div class="card">
+
+<h2 class="grupo-title">
+⚽ Placar
+</h2>
+
+<div class="placar-ao-vivo">
+
+<div class="time-live">
+    <h2>{{ jogo.mandante.nome }}</h2>
+    <span class="forca-live">
+        Ataque {{ jogo.mandante.ataque }}
+    </span>
+</div>
+
+<div class="placar-central">
+
+<div class="placar-numero">
+    {{ jogo.gols_mandante|default_if_none:"0" }}
+</div>
+
+<div class="placar-x">
+X
+</div>
+
+<div class="placar-numero">
+    {{ jogo.gols_visitante|default_if_none:"0" }}
+</div>
+
+<div class="minuto-live">
+    🔴 AO VIVO
+</div>
+
+</div>
+
+<div class="time-live">
+    <h2>{{ jogo.visitante.nome }}</h2>
+    <span class="forca-live">
+        Ataque {{ jogo.visitante.ataque }}
+    </span>
+</div>
+
+</div>
+
+<div style="display:flex; gap:12px; margin-top:20px;">
+
+<a
+href="/jogo/{{ jogo.id }}/simular/"
+class="botao-salvar"
+>
+🎲 Simular partida
+</a>
+
+<button
+class="botao-salvar"
+onclick="simularAoVivo()"
+>
+🔴 Simular ao vivo
+</button>
+
+</div>
+
+</div>
+
+<!-- ESTATÍSTICAS -->
+
+{% if estatistica %}
+
+<div class="card">
+
+<h2 class="grupo-title">
+📊 Estatísticas
+</h2>
+
+<div class="estatisticas-grid">
+
+<div class="stat-box">
+<h3>Posse</h3>
+<p>
+{{ estatistica.posse_mandante }}%
+x
+{{ estatistica.posse_visitante }}%
+</p>
+</div>
+
+<div class="stat-box">
+<h3>Finalizações</h3>
+<p>
+{{ estatistica.finalizacoes_mandante }}
+x
+{{ estatistica.finalizacoes_visitante }}
+</p>
+</div>
+
+<div class="stat-box">
+<h3>No Gol</h3>
+<p>
+{{ estatistica.finalizacoes_gol_mandante }}
+x
+{{ estatistica.finalizacoes_gol_visitante }}
+</p>
+</div>
+
+<div class="stat-box">
+<h3>Escanteios</h3>
+<p>
+{{ estatistica.escanteios_mandante }}
+x
+{{ estatistica.escanteios_visitante }}
+</p>
+</div>
+
+<div class="stat-box">
+<h3>Faltas</h3>
+<p>
+{{ estatistica.faltas_mandante }}
+x
+{{ estatistica.faltas_visitante }}
+</p>
+</div>
+
+<div class="stat-box">
+<h3>Pênaltis</h3>
+<p>
+{{ estatistica.penaltis_mandante }}
+x
+{{ estatistica.penaltis_visitante }}
+</p>
+</div>
+
+</div>
+
+</div>
+
+{% endif %}
+
+<!-- EVENTOS -->
+
+<div class="card">
+
+<h2 class="grupo-title">
+📢 Minuto a Minuto
+</h2>
+
+<div id="eventos-container">
+
+{% for evento in eventos %}
+
+<div
+class="evento-jogo"
+data-tipo="{{ evento.tipo }}"
+>
+
+<strong>
+{{ evento.minuto }}'
+</strong>
+
+<span>
+{{ evento.descricao }}
+</span>
+
+</div>
+
+{% empty %}
+
+<p>
+Nenhum evento ainda.
+</p>
+
+{% endfor %}
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+function simularAoVivo() {
+
+    const eventos =
+    document.querySelectorAll(
+        ".evento-jogo"
+    );
+
+    eventos.forEach(
+        evento => {
+            evento.style.display =
+            "none";
+        }
+    );
+
+    let i = 0;
+
+    function mostrarEvento() {
+
+        if(i < eventos.length){
+
+            eventos[i]
+            .style.display =
+            "flex";
+
+            if(
+                eventos[i]
+                .dataset.tipo
+                === 'penalti'
+            ){
+
+                eventos[i]
+                .classList.add(
+                    'evento-penalti'
+                );
+            }
+
+            eventos[i]
+            .scrollIntoView({
+                behavior:'smooth',
+                block:'center'
+            });
+
+            i++;
+
+            setTimeout(
+                mostrarEvento,
+                1200
+            );
+        }
+    }
+
+    mostrarEvento();
+}
+</script>
+
+</body>
+</html>
