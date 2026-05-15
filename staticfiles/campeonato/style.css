@@ -1,0 +1,848 @@
+/* =========================
+   RESET
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background:
+    radial-gradient(circle at top,
+    #064e3b,
+    #020617 45%);
+    color: white;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+header {
+    background:
+    linear-gradient(
+        135deg,
+        #020617,
+        #064e3b,
+        #16a34a
+    );
+
+    text-align: center;
+    padding: 45px 20px;
+    border-bottom: 4px solid #22c55e;
+
+    box-shadow:
+    0 5px 20px rgba(0,0,0,0.3);
+}
+
+header h1 {
+    font-size: 42px;
+    margin-bottom: 10px;
+}
+
+header p {
+    color: #d1fae5;
+    font-size: 18px;
+}
+
+/* =========================
+   MENU DASHBOARD
+========================= */
+
+.menu {
+    position: sticky;
+    top: 0;
+    z-index: 999;
+
+    background:
+    rgba(2, 6, 23, 0.95);
+
+    padding: 18px;
+    text-align: center;
+
+    backdrop-filter: blur(12px);
+
+    border-bottom:
+    1px solid #334155;
+}
+
+.menu a {
+    display: inline-block;
+    margin: 6px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #14532d,
+        #16a34a
+    );
+
+    color: white;
+    text-decoration: none;
+
+    padding: 13px 20px;
+    border-radius: 16px;
+
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.menu a:hover {
+    transform: translateY(-3px);
+    background:
+    linear-gradient(
+        135deg,
+        #16a34a,
+        #22c55e
+    );
+}
+
+/* =========================
+   CONTAINER
+========================= */
+
+.container {
+    width: 92%;
+    max-width: 1300px;
+    margin: 30px auto;
+}
+
+/* =========================
+   CARDS
+========================= */
+
+.card {
+    background:
+    rgba(15, 23, 42, 0.95);
+
+    border: 1px solid #334155;
+
+    border-radius: 24px;
+
+    padding: 25px;
+    margin-bottom: 25px;
+
+    box-shadow:
+    0 8px 28px rgba(0,0,0,0.35);
+}
+
+/* =========================
+   TITULOS
+========================= */
+
+.grupo-title {
+    background:
+    linear-gradient(
+        135deg,
+        #14532d,
+        #16a34a
+    );
+
+    padding: 16px;
+    border-radius: 18px;
+
+    text-align: center;
+    margin-bottom: 20px;
+
+    font-size: 22px;
+}
+
+/* =========================
+   TABELAS
+========================= */
+
+.tabela-campeonato {
+    width: 100%;
+    border-collapse: collapse;
+    overflow: hidden;
+    border-radius: 20px;
+}
+
+.tabela-campeonato th {
+    background: #14532d;
+    color: white;
+    padding: 14px;
+}
+
+.tabela-campeonato td {
+    text-align: center;
+    padding: 14px;
+    border-bottom:
+    1px solid #334155;
+}
+
+.tabela-campeonato tr:hover {
+    background: #1e293b;
+}
+
+/* classificados */
+.classificado {
+    background:
+    #bbf7d0 !important;
+
+    color:
+    #064e3b !important;
+
+    font-weight: bold;
+}
+
+/* rebaixados */
+.rebaixado {
+    background:
+    #fecaca !important;
+
+    color:
+    #7f1d1d !important;
+
+    font-weight: bold;
+}
+
+/* =========================
+   LOGOS
+========================= */
+
+.time-coluna {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-time {
+    width: 34px;
+    height: 34px;
+    object-fit: contain;
+}
+
+/* =========================
+   BOTÕES RODADAS
+========================= */
+
+.rodadas-botoes {
+    display: grid;
+
+    grid-template-columns:
+    repeat(auto-fit,
+    minmax(120px, 1fr));
+
+    gap: 12px;
+}
+
+.botao-rodada {
+    text-align: center;
+
+    background: #1e293b;
+    border: 1px solid #334155;
+
+    color: white;
+    text-decoration: none;
+
+    padding: 14px;
+    border-radius: 16px;
+
+    font-weight: bold;
+}
+
+.botao-rodada:hover,
+.botao-rodada.ativa {
+    background: #16a34a;
+}
+
+/* =========================
+   JOGOS
+========================= */
+
+.jogo-copa {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background: #111827;
+
+    border-left:
+    6px solid #22c55e;
+
+    border-radius: 18px;
+
+    padding: 18px;
+    margin-bottom: 14px;
+}
+
+.time-casa,
+.time-fora {
+    width: 35%;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.time-fora {
+    text-align: right;
+}
+
+.placar-copa2014 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.input-gol {
+    width: 60px;
+    height: 50px;
+
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+
+    border-radius: 14px;
+    border: 3px solid #22c55e;
+
+    background: #020617;
+    color: white;
+}
+
+.x-copa {
+    font-size: 28px;
+    font-weight: bold;
+    color: #22c55e;
+}
+
+/* =========================
+   BOTÃO SALVAR
+========================= */
+
+.botao-salvar {
+    width: 100%;
+    border: none;
+
+    background:
+    linear-gradient(
+        135deg,
+        #16a34a,
+        #22c55e
+    );
+
+    color: white;
+
+    padding: 18px;
+    border-radius: 18px;
+
+    font-size: 18px;
+    font-weight: bold;
+
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+.botao-salvar:hover {
+    transform: scale(1.02);
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:768px){
+
+    .jogo-copa {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .time-casa,
+    .time-fora {
+        width: 100%;
+        text-align: center;
+    }
+
+    header h1 {
+        font-size: 30px;
+    }
+}
+
+.evento-jogo {
+    background: #111827;
+    border-left: 5px solid #22c55e;
+    padding: 14px;
+    margin-bottom: 10px;
+    border-radius: 14px;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.evento-jogo strong {
+    color: #22c55e;
+    font-size: 18px;
+    min-width: 45px;
+}
+
+.botao-simular {
+    background: linear-gradient(135deg, #2563eb, #3b82f6);
+    color: white;
+    text-decoration: none;
+    padding: 12px 16px;
+    border-radius: 14px;
+    font-weight: bold;
+    margin-left: 12px;
+    transition: .2s;
+}
+
+.botao-simular:hover {
+    transform: scale(1.05);
+}
+
+.evento-jogo {
+    background: #111827;
+    border-left: 5px solid #22c55e;
+    padding: 14px;
+    margin-bottom: 12px;
+    border-radius: 16px;
+
+    display: flex;
+    gap: 14px;
+    align-items: center;
+
+    animation:
+    aparecer .5s ease;
+}
+
+.evento-jogo strong {
+    color: #22c55e;
+    font-size: 18px;
+    min-width: 50px;
+}
+
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform:
+        translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform:
+        translateY(0);
+    }
+}
+
+/* =========================
+   DETALHE DO JOGO
+========================= */
+
+.placar-ao-vivo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    text-align: center;
+    flex-wrap: wrap;
+}
+
+.time-live {
+    flex: 1;
+    min-width: 220px;
+}
+
+.time-live h2 {
+    font-size: 28px;
+    margin-bottom: 8px;
+}
+
+.forca-live {
+    background: #14532d;
+    padding: 8px 14px;
+    border-radius: 12px;
+    display: inline-block;
+    font-weight: bold;
+}
+
+.placar-central {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.placar-numero {
+    width: 80px;
+    height: 80px;
+
+    background: #020617;
+    border: 4px solid #22c55e;
+
+    border-radius: 20px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 38px;
+    font-weight: bold;
+}
+
+.placar-x {
+    font-size: 28px;
+    color: #22c55e;
+    font-weight: bold;
+}
+
+.minuto-live {
+    background: #dc2626;
+    color: white;
+    padding: 10px 16px;
+    border-radius: 14px;
+    font-weight: bold;
+    animation: pulsar 1s infinite;
+}
+
+/* =========================
+   ESTATÍSTICAS
+========================= */
+
+.estatisticas-grid {
+    display: grid;
+
+    grid-template-columns:
+    repeat(auto-fit, minmax(200px, 1fr));
+
+    gap: 18px;
+}
+
+.stat-box {
+    background: #111827;
+    border-left: 5px solid #22c55e;
+    border-radius: 18px;
+    padding: 18px;
+    text-align: center;
+}
+
+.stat-box h3 {
+    margin-bottom: 10px;
+    color: #86efac;
+}
+
+.stat-box p {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+/* =========================
+   EVENTOS
+========================= */
+
+.evento-jogo {
+    background: #111827;
+
+    border-left: 5px solid #22c55e;
+
+    padding: 14px;
+    margin-bottom: 12px;
+
+    border-radius: 16px;
+
+    display: flex;
+    gap: 14px;
+    align-items: center;
+
+    animation:
+    aparecer .5s ease;
+}
+
+.evento-jogo strong {
+    color: #22c55e;
+    font-size: 18px;
+    min-width: 50px;
+}
+
+/* PÊNALTI */
+
+.evento-penalti {
+    animation:
+    brilhoPenalti .8s infinite;
+}
+
+@keyframes brilhoPenalti {
+    0% {
+        transform: scale(1);
+        background: #111827;
+    }
+
+    50% {
+        transform: scale(1.03);
+        background: #f59e0b;
+    }
+
+    100% {
+        transform: scale(1);
+        background: #111827;
+    }
+}
+
+/* AO VIVO */
+
+@keyframes pulsar {
+    0% {
+        opacity: .7;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: .7;
+    }
+}
+
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform:
+        translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform:
+        translateY(0);
+    }
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+    .placar-ao-vivo {
+        flex-direction: column;
+    }
+
+    .placar-numero {
+        width: 70px;
+        height: 70px;
+        font-size: 32px;
+    }
+
+    .time-live h2 {
+        font-size: 22px;
+    }
+}
+
+/* =========================
+   HOME GLOBO ESPORTE
+========================= */
+
+.dashboard-header {
+    background:
+    linear-gradient(
+        135deg,
+        #065f46,
+        #047857,
+        #16a34a
+    );
+
+    padding: 70px 20px;
+    text-align: center;
+
+    border-bottom:
+    5px solid #22c55e;
+
+    box-shadow:
+    0 10px 30px rgba(0,0,0,.4);
+}
+
+.header-conteudo {
+    max-width: 900px;
+    margin: auto;
+}
+
+.tag-campeonato {
+    display: inline-block;
+    background: #dc2626;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 20px;
+
+    animation: pulsar 1.2s infinite;
+}
+
+.dashboard-header h1 {
+    font-size: 56px;
+    margin-bottom: 15px;
+}
+
+.dashboard-header p {
+    font-size: 20px;
+    color: #d1fae5;
+    margin-bottom: 30px;
+}
+
+.header-botoes {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.header-botoes a {
+    background: white;
+    color: #166534;
+    padding: 14px 22px;
+    border-radius: 16px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: .2s;
+}
+
+.header-botoes a:hover {
+    transform: translateY(-3px);
+}
+
+.dashboard-container {
+    width: 92%;
+    max-width: 1300px;
+    margin: 40px auto;
+}
+
+.painel-resumo {
+    display: grid;
+    grid-template-columns:
+    repeat(auto-fit, minmax(220px, 1fr));
+
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.resumo-box {
+    background: #111827;
+    border-left: 5px solid #22c55e;
+    border-radius: 22px;
+    padding: 30px;
+    text-align: center;
+}
+
+.resumo-box span {
+    display: block;
+    color: #86efac;
+    margin-bottom: 10px;
+}
+
+.resumo-box strong {
+    font-size: 42px;
+}
+
+.manchete-card {
+    background:
+    linear-gradient(
+        135deg,
+        #14532d,
+        #166534
+    );
+
+    border-radius: 24px;
+    padding: 35px;
+    margin-bottom: 30px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.categoria {
+    background: red;
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.manchete-card h2 {
+    margin: 14px 0;
+    font-size: 34px;
+}
+
+.manchete-card a {
+    background: white;
+    color: #166534;
+    padding: 14px 20px;
+    border-radius: 16px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.grid-dashboard {
+    display: grid;
+    grid-template-columns:
+    repeat(auto-fit, minmax(280px, 1fr));
+
+    gap: 22px;
+}
+
+.dashboard-card {
+    background: #111827;
+    border: 1px solid #334155;
+    border-radius: 26px;
+    padding: 28px;
+    text-decoration: none;
+    color: white;
+    transition: .2s;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-5px);
+    border-color: #22c55e;
+}
+
+.icone-card {
+    font-size: 45px;
+    display: block;
+    margin-bottom: 14px;
+}
+
+.dashboard-card h2 {
+    margin-bottom: 12px;
+}
+
+.dashboard-card p {
+    color: #cbd5e1;
+}
+
+.admin-card {
+    border: 2px solid #f59e0b;
+}
+
+.footer-campeonato {
+    margin-top: 50px;
+    background: #020617;
+    text-align: center;
+    padding: 30px;
+    color: #94a3b8;
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+    .dashboard-header h1{
+        font-size: 38px;
+    }
+
+    .dashboard-header p{
+        font-size: 17px;
+    }
+
+    .manchete-card h2{
+        font-size: 26px;
+    }
+
+    .resumo-box strong{
+        font-size: 34px;
+    }
+}
